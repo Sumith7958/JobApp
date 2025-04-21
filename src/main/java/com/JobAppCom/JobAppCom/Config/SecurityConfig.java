@@ -54,14 +54,18 @@ public class SecurityConfig {
             }
         };
 
-        http.authorizeHttpRequests(abcd);**/
-        http.csrf(customizer-> customizer.disable());
-        http.authorizeHttpRequests(request->request.requestMatchers("/login","/users")
-                                                                                 .permitAll().anyRequest().authenticated());
-        //http.formLogin(Customizer.withDefaults());
-        //http.httpBasic(Customizer.withDefaults());
-        http.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        http.addFilter(jwtFilter,UsernamePasswordAuthenticationFilter.class);
+
+        http.authorizeHttpRequests(abcd);
+         //http.formLogin(Customizer.withDefaults());
+         //http.httpBasic(Customizer.withDefaults());
+         * */
+        http.csrf(customizer -> customizer.disable())
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("users", "login")
+                        .permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailsModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int Id;
     String userName;
     String password;

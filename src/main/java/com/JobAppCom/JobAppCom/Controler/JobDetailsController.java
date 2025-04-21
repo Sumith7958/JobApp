@@ -66,7 +66,7 @@ public class JobDetailsController {
                 .authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(),user.getPassword()));
 
         if(authentication!=null){
-            return jwtService.getJwtToken(user.getUserName());
+            return jwtService.generateToken(user.getUserName());
         }else{
             return "failed";
         }

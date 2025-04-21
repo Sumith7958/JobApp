@@ -17,8 +17,10 @@ public class JobDetails {
 
     @Autowired
     private JobListRepo repo;
+
     @Autowired
-    private UserDetailsRepo userrepo;
+    public UserDetailsRepo userrepo;
+
     private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(12);
 
     //@Autowired
