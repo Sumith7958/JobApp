@@ -28,6 +28,11 @@ public class JobDetailsController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @GetMapping("/")
+    public String welcome(){
+        return "Hello!! Welcome to application!";
+    }
+
     @GetMapping("/posts")
     public List<JobDetailsModel> getAllJobDetails(){
         return service.getAllJobDetails();
@@ -70,6 +75,15 @@ public class JobDetailsController {
         }else{
             return "failed";
         }
+    }
+
+    @GetMapping("/info")
+    public String getinfo(){
+        String os =System.getProperty("os.name");
+        String version=System.getProperty("os.version");
+        String aric=System.getProperty("os.arch");
+        String java=System.getProperty("java.version");
+        return os+" "+version+" "+aric+" "+java;
     }
 
 
